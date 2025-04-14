@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="fc:frame" content='{"version":"next","imageUrl":"https://actions.artlu.xyz/favicon.png","button":{"title":"Act 👉","action":{"type":"launch_frame","name":"Actions","url":"https://actions.artlu.xyz"}}}' /> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title>Actions Mini App</title>
+		<script src="https://cdn.jsdelivr.net/npm/@farcaster/frame-sdk/dist/index.min.js"></script>
+		<script src="sdk-wallet.js"></script>
+		<script src="clipboard.js"></script>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<h1>👉 Actions Mini App</h1>
+		<div class="button-grid">
+			<div id="recaster-button" onclick="handleRecasterClick()">
+				<img src="https://recaster.org/logo.png" alt="Recaster Logo">
+			</div>
+			<div id="supercast-button" onclick="handleSupercastClick()">
+				<img src="https://www.super.sc/supercast-logo-black.png" alt="Supercast Logo">
+			</div>
+			<div id="firefly-button" onclick="handleFireflyClick()">
+				<img src="https://firefly.mask.social/favicon.ico" alt="Firefly Logo">
+			</div>
+			<div id="neynar-button" onclick="handleNeynarExplorerClick()">
+				<img src="https://explorer.neynar.com/neynarplanet.png" alt="Neynar Explorer Logo">
+			</div>
+		</div>
+		<div id="results" hidden></div>
+		<div class="coffee-button-container">
+			<a onclick="sendUSDC(amt=5.0, recipient='0x868d077D5Ae521e972d0494486807363E9d65604')">
+				<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" class="coffee-button">
+				<img src="https://raw.githubusercontent.com/base/brand-kit/main/logo/in-product/Base_Network_Logo.svg" alt="Base Network Logo" class="base-logo">
+				<span class="usdc-amount">5 <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/3408.png" alt="USDC Logo" class="usdc-logo"></span>
+			</a>
+		</div>
+		<script>
+			frame.sdk.actions.ready();
+			
+			async function fetchCastData() {
+				try {
+					const { text } = await getClipboardContent();
+					
+					if (!text || text.trim() === '') {
+						throw new Error('No valid text content found in clipboard');
+					}
+
+					// Call the API
+					const response = await fetch(`/api/${encodeURIComponent(text)}`);
+					if (!response.ok) {
+						throw new Error(`${text}: Unable to find cast ${response.status}`);
+					}
+					const data = await response.json();
+
+					return data;
+				} catch (err) {
+					console.error('Error:', err);
+					const escapedError = err.message.replace(/[&<>"']/g, function(m) {
+						return {
+							'&': '&amp;',
+							'<': '&lt;',
+							'>': '&gt;',
+							'"': '&quot;',
+							"'": '&#39;'
+						}[m];
+					});
+					const resultsDiv = document.getElementById('results');
+					resultsDiv.hidden = false;
+					resultsDiv.textContent += `\n\n❌ Error: ${escapedError}`;
+					throw err;
+				}
+			}
+
+			async function handleRecasterClick() {
+				try {
+					const data = await fetchCastData();
+					// Redirect to Recaster
+					const baseUrl = 'https://recaster.org';
+					const url = data && data.hash ? `${baseUrl}/cast/${data.hash}` : baseUrl;
+					frame.sdk.actions.openUrl(url);
+				} catch (err) {
+					if (err.name === 'NotAllowedError') {
+						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
+					}
+				}
+			}
+
+			async function handleSupercastClick() {
+				try {
+					const data = await fetchCastData();
+					// Redirect to Supercast
+					const baseUrl = 'https://www.super.sc';
+					const url = data && data.hash ? `${baseUrl}/c/${data.hash}` : baseUrl;
+					frame.sdk.actions.openUrl(url);
+				} catch (err) {
+					if (err.name === 'NotAllowedError') {
+						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
+					}
+				}
+			}
+
+			async function handleFireflyClick() {
+				try {
+					const data = await fetchCastData();
+					// Redirect to Firefly
+					const baseUrl = 'https://firefly.mask.social';
+					const url = data && data.hash ? `${baseUrl}/post/farcaster/${data.hash}` : baseUrl;
+					frame.sdk.actions.openUrl(url);
+				} catch (err) {
+					if (err.name === 'NotAllowedError') {
+						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
+					}
+				}
+			}
+
+			async function handleNeynarExplorerClick() {
+				try {
+					const data = await fetchCastData();
+					// Redirect to Neynar
+					const baseUrl = 'https://explorer.neynar.com';
+					const url = data && data.hash ? `${baseUrl}/${data.hash}` : baseUrl;
+					frame.sdk.actions.openUrl(url);
+				} catch (err) {
+					if (err.name === 'NotAllowedError') {
+						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
+					}
+				}
+			}
+		</script>  
+	</body>
+</html>

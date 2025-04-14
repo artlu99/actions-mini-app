@@ -1,0 +1,240 @@
+:root {
+	--bg-color: #ffffff;
+	--text-color: #333333;
+	--input-bg: #f5f5f5;
+	--input-border: #ddd;
+	--button-bg: #007bff;
+	--button-hover: #0056b3;
+	--results-bg: #f5f5f5;
+	--results-text: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg-color: #1a1a1a;
+		--text-color: #ffffff;
+		--input-bg: #2d2d2d;
+		--input-border: #444;
+		--button-bg: #0d6efd;
+		--button-hover: #0b5ed7;
+		--results-bg: #2d2d2d;
+		--results-text: #ffffff;
+	}
+}
+
+/* Base styles */
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	transition: background-color 0.3s, color 0.3s;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	padding-top: 40px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+/* Button Grid */
+.button-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 30px;
+	margin: 20px auto;
+	max-width: 400px;
+}
+
+/* Action Buttons */
+#recaster-button, #supercast-button, #firefly-button, #neynar-button {
+	width: 128px;
+	height: 128px;
+	border-radius: 32px;
+	overflow: hidden;
+	background-color: var(--bg-color);
+	border: none;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+}
+
+#recaster-button:hover, #supercast-button:hover, #firefly-button:hover, #neynar-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+#recaster-button:active, #supercast-button:active, #firefly-button:active, #neynar-button:active {
+	transform: translateY(0);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#recaster-button img, #supercast-button img, #firefly-button img, #neynar-button img {
+	width: 80%;
+	height: 80%;
+	object-fit: contain;
+	padding: 0;
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Coffee Button Container */
+.coffee-button-container {
+	position: relative;
+	display: inline-block;
+	margin-top: 120px; /* Increased from 20px to move it down by ~2 button heights */
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.coffee-button {
+	height: 60px;
+	width: auto;
+	transition: transform 0.2s ease;
+}
+
+.coffee-button:hover {
+	transform: scale(1.05);
+}
+
+.base-logo {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 30px;
+	width: auto;
+	opacity: 0.9;
+	pointer-events: none;
+	transition: all 0.2s ease;
+	margin-left: -65px;
+	margin-top: 5px;
+}
+
+.usdc-amount {
+	position: absolute;
+	right: -30px;
+	bottom: -20px;
+	background: #2775CA; /* USDC blue */
+	color: white;
+	padding: 6px 12px;
+	border-radius: 16px;
+	font-size: 18px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	z-index: 1;
+}
+
+.usdc-logo {
+	width: 20px;
+	height: 20px;
+}
+
+.coffee-button-container:hover .base-logo {
+	opacity: 1;
+	transform: scale(1.25);
+	margin-left: -70px;
+	margin-top: 0;
+}
+
+/* Add a subtle hover effect to the badge */
+.coffee-button-container:hover .usdc-amount {
+	transform: scale(1.05);
+	transition: transform 0.2s ease;
+}
+
+/* Results */
+#results {
+	margin-top: 20px;
+	padding: 15px;
+	background-color: var(--results-bg);
+	border-radius: 8px;
+	font-family: monospace;
+	white-space: pre-wrap;
+	color: var(--results-text);
+	font-size: 14px;
+	overflow-x: auto;
+	max-width: 100%;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+	#recaster-button, #supercast-button, #firefly-button, #neynar-button {
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+		background-color: var(--input-bg);
+	}
+
+	#recaster-button:hover, #supercast-button:hover, #firefly-button:hover, #neynar-button:hover {
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+	}
+
+	#recaster-button:active, #supercast-button:active, #firefly-button:active, #neynar-button:active {
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	#recaster-button img, #supercast-button img, #firefly-button img, #neynar-button img {
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+	}
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+	body {
+		padding: 20px;
+		padding-top: 30px;
+	}
+
+	.button-grid {
+		gap: 20px;
+		max-width: 300px;
+	}
+
+	#recaster-button, #supercast-button, #firefly-button, #neynar-button {
+		width: 100px;
+		height: 100px;
+		border-radius: 25px;
+	}
+
+	.coffee-button {
+		height: 50px;
+	}
+	
+	.base-logo {
+		height: 25px;
+		margin-left: -55px;
+		margin-top: 5px;
+	}
+
+	.coffee-button-container:hover .base-logo {
+		margin-left: -60px;
+		margin-top: 0;
+	}
+}
+
+/* Tablet and larger screens */
+@media (min-width: 481px) {
+	.input-group {
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+.coffee-button-container a {
+	position: relative;
+	display: block;
+} 

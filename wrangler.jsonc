@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "actions-mini-app",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-04-14",
+  "vars": {
+    "MY_VAR": "Hello from Hono 🔥 on Cloudflare Workers"
+  },
+  "assets": {
+    "directory": "public"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

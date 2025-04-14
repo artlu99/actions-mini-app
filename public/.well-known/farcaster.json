@@ -1,0 +1,17 @@
+{
+    "accountAssociation": {
+      "header": "eyJmaWQiOjY1NDYsInR5cGUiOiJjdXN0b2R5Iiwia2V5IjoiMHgyMWNBOUYwRjdDMGI1OWY2MTZiMUQ5NjMyNWQ1NUI2MmM5NjYxRDZkIn0",
+      "payload": "eyJkb21haW4iOiJhY3Rpb25zLmFydGx1Lnh5eiJ9",
+      "signature": "MHhlYjRhODU4NmFiYzFlMjI3OTVhMDkwMWJmMjU1MjFiZDJlMWMwYzYzZTQ4NDRkMGI4NzNlNDlmYTZiZGRjMDY5M2JmNTYyNTNkOGM3NGM0Nzg5MmViZWM4YzI1YzIxZWY2NTA4YTc5YTJkMjEwM2I3YzI0NmIzOTgxYTBkMmI0YTFj"
+    },
+        "frame": {
+        "version": "0.0.1",
+        "name": "Actions Mini App",
+        "iconUrl": "https://actions.artlu.xyz/favicon.png",
+        "homeUrl": "https://actions.artlu.xyz",
+        "imageUrl": "https://actions.artlu.xyz/favicon.png", 
+        "buttonTitle": "Act 👉",
+        "splashImageUrl": "https://actions.artlu.xyz/favicon.png",
+        "splashBackgroundColor": "#000000"
+    }
+}
