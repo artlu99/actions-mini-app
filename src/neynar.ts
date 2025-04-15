@@ -1,16 +1,14 @@
 import type { CastParamType, CastResponse } from "@neynar/nodejs-sdk/build/api";
-import { Redis } from "@upstash/redis/cloudflare";
 import { fetcher } from "itty-fetcher";
 
 const neynarApi = fetcher({ base: "https://api.neynar.com" });
 const TTL = 30 * 24 * 60 * 60; // 30 days
 
 const cachedFetcherGet = async <T>(env: Env, url: string) => {
-  const redis = Redis.fromEnv(env);
-  const cache = await redis.get(`neynar:${url}`);
+  const cache = await env.KV.get(`neynar:${url}`);
 
   if (cache) {
-    return cache as T;
+    return JSON.parse(cache) as T;
   }
 
   const res = await neynarApi.get(url, undefined, {
@@ -20,7 +18,9 @@ const cachedFetcherGet = async <T>(env: Env, url: string) => {
     },
   });
 
-  await redis.set(`neynar:${url}`, JSON.stringify(res), { ex: TTL });
+  await env.KV.put(`neynar:${url}`, JSON.stringify(res), {
+    expirationTtl: TTL,
+  });
 
   return res as T;
 };

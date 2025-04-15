@@ -9,6 +9,12 @@
   "assets": {
     "directory": "public"
   },
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "e827e6c4ed19440389b86616314f4b97" // USE YOUR OWN KV ID HERE
+    }
+  ],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1

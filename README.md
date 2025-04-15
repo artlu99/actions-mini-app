@@ -8,7 +8,7 @@ And a batteries-included starter template!
 
 - front-end: vanilla HTML + CSS + JavaScript
 - backend: Hono 🔥 on Cloudflare Workers with Zod validation
-- Upstash Redis for caching Neynar API calls
+- example of Neynar API usage
 
 ## usage
 
