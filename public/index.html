@@ -2,9 +2,8 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="fc:frame" content='{"version":"next","imageUrl":"https://actions.artlu.xyz/favicon.png","button":{"title":"Act 👉","action":{"type":"launch_frame","name":"Actions","url":"https://actions.artlu.xyz"}}}' /> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="fc:frame" content='{"version":"next","imageUrl":"https://actions.artlu.xyz/favicon.png","button":{"title":"Act 👉","action":{"type":"launch_frame","name":"Actions","url":"https://actions.artlu.xyz"}}}' /> 
 		<title>Actions Mini App</title>
 		<script src="https://cdn.jsdelivr.net/npm/@farcaster/frame-sdk/dist/index.min.js"></script>
 		<script src="sdk-wallet.js"></script>
@@ -21,7 +20,7 @@
 				<img src="https://www.super.sc/supercast-logo-black.png" alt="Supercast Logo">
 			</div>
 			<div id="firefly-button" onclick="handleFireflyClick()">
-				<img src="https://firefly.mask.social/favicon.ico" alt="Firefly Logo">
+				<img src="https://firefly.social/favicon.ico" alt="Firefly Logo">
 			</div>
 			<div id="neynar-button" onclick="handleNeynarExplorerClick()">
 				<img src="https://explorer.neynar.com/neynarplanet.png" alt="Neynar Explorer Logo">
@@ -110,7 +109,7 @@
 				try {
 					const data = await fetchCastData();
 					// Redirect to Firefly
-					const baseUrl = 'https://firefly.mask.social';
+					const baseUrl = 'https://firefly.social';
 					const url = data && data.hash ? `${baseUrl}/post/farcaster/${data.hash}` : baseUrl;
 					frame.sdk.actions.openUrl(url);
 				} catch (err) {
