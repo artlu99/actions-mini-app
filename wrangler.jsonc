@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "actions-mini-app",
   "main": "src/index.ts",
-  "compatibility_date": "2025-04-14",
+  "compatibility_date": "2025-05-12",
   "vars": {
     "MY_VAR": "Hello from Hono 🔥 on Cloudflare Workers"
   },
