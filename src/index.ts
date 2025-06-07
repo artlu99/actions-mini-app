@@ -13,8 +13,8 @@ app
 	.use("*", csrf({ origin: [BASE_URL] }));
 
 app.get("/", (c) => {
-	const { MY_VAR, SECRET } = c.env;
-	return c.json({ MY_VAR, SECRET });
+	const { MY_VAR } = c.env;
+	return c.json({ MY_VAR });
 });
 
 export default app;
