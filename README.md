@@ -7,8 +7,7 @@ And a batteries-included starter template!
 ## dependencies
 
 - front-end: vanilla HTML + CSS + JavaScript
-- backend: Hono 🔥 on Cloudflare Workers with Zod validation
-- example of Neynar API usage
+- backend: Hono 🔥 on Cloudflare Workers
 
 ## usage
 
@@ -19,5 +18,4 @@ And a batteries-included starter template!
 
 ## batteries included
 
-- cached Neynar API calls
-- Typescript backend with runtime validation, security middleware
+- Typescript backend with security middleware
