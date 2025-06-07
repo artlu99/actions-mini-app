@@ -43,125 +43,51 @@
 		<script>
 			frame.sdk.actions.ready();
 			
-			async function fetchCastData() {
-				try {
-					const { text } = await getClipboardContent();
-					
-					if (!text || text.trim() === '') {
-						throw new Error('No valid text content found in clipboard');
-					}
-
-					// Call the API
-					const response = await fetch(`/api/${encodeURIComponent(text)}`);
-					if (!response.ok) {
-						throw new Error(`${text}: Unable to find cast ${response.status}`);
-					}
-					const data = await response.json();
-
-					return data;
-				} catch (err) {
-					console.error('Error:', err);
-					const escapedError = err.message.replace(/[&<>"']/g, function(m) {
-						return {
-							'&': '&amp;',
-							'<': '&lt;',
-							'>': '&gt;',
-							'"': '&quot;',
-							"'": '&#39;'
-						}[m];
-					});
-					const resultsDiv = document.getElementById('results');
-					resultsDiv.hidden = false;
-					resultsDiv.textContent += `\n\n❌ Error: ${escapedError}`;
-					throw err;
-				}
-			}
-
 			async function handleRecasterClick() {
 				// Redirect to Recaster
 				const baseUrl = 'https://recaster.org';
-
 				const context = await frame.sdk.context;
 				if (context.location?.type === "cast_share") {
 					const url = `${baseUrl}/cast/${context.location.cast.hash}`;
 					frame.sdk.actions.openUrl(url);
-					return;
-				}
-
-				try {
-					const data = await fetchCastData();
-					const url = data && data.hash ? `${baseUrl}/cast/${data.hash}` : baseUrl;
-					frame.sdk.actions.openUrl(url);
-				} catch (err) {
-					if (err.name === 'NotAllowedError') {
-						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
-					}
+				} else {
+					frame.sdk.actions.openUrl(baseUrl);
 				}
 			}
 
 			async function handleSupercastClick() {
 				// Redirect to Supercast
 				const baseUrl = 'https://www.super.sc';
-
 				const context = await frame.sdk.context;
 				if (context.location?.type === "cast_share") {
 					const url = `${baseUrl}/c/${context.location.cast.hash}`;
 					frame.sdk.actions.openUrl(url);
-					return;
-				}
-
-				try {
-					const data = await fetchCastData();
-					const url = data && data.hash ? `${baseUrl}/c/${data.hash}` : baseUrl;
-					frame.sdk.actions.openUrl(url);
-				} catch (err) {
-					if (err.name === 'NotAllowedError') {
-						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
-					}
+				} else {
+					frame.sdk.actions.openUrl(baseUrl);
 				}
 			}
 
 			async function handleFireflyClick() {
 				// Redirect to Firefly
 				const baseUrl = 'https://firefly.social';
-
 				const context = await frame.sdk.context;
 				if (context.location?.type === "cast_share") {
 					const url = `${baseUrl}/post/farcaster/${context.location.cast.hash}`;
 					frame.sdk.actions.openUrl(url);
-					return;
-				}
-
-				try {
-					const data = await fetchCastData();
-					const url = data && data.hash ? `${baseUrl}/post/farcaster/${data.hash}` : baseUrl;
-					frame.sdk.actions.openUrl(url);
-				} catch (err) {
-					if (err.name === 'NotAllowedError') {
-						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
-					}
+				} else {
+					frame.sdk.actions.openUrl(baseUrl);
 				}
 			}
 
 			async function handleNeynarExplorerClick() {
 				// Redirect to Neynar
 				const baseUrl = 'https://explorer.neynar.com';
-
 				const context = await frame.sdk.context;
 				if (context.location?.type === "cast_share") {
 					const url = `${baseUrl}/${context.location.cast.hash}`;
 					frame.sdk.actions.openUrl(url);
-					return;
-				}
-
-				try {
-					const data = await fetchCastData();
-					const url = data && data.hash ? `${baseUrl}/${data.hash}` : baseUrl;
-					frame.sdk.actions.openUrl(url);
-				} catch (err) {
-					if (err.name === 'NotAllowedError') {
-						alert('Failed to read from clipboard. Please make sure clipboard access is allowed.');
-					}
+				} else {
+					frame.sdk.actions.openUrl(baseUrl);
 				}
 			}
 		</script>  
