@@ -44,7 +44,7 @@ app
                 if (val.includes("/")) {
                   const url = new URL(val);
                   return (
-                    url.protocol === "https:" && url.hostname === "warpcast.com"
+                    url.protocol === "https:" && url.hostname === "farcaster.xyz"
                   );
                 }
                 // If it's a hash, validate it's a alphanumeric cast hash

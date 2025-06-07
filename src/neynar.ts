@@ -29,7 +29,7 @@ export const lookupCastByHashOrWarpcastUrl = async (
   env: Env,
   hashOrUrl: string
 ) => {
-  const type: CastParamType = hashOrUrl.startsWith("https://warpcast.com/")
+  const type: CastParamType = hashOrUrl.startsWith("https://farcaster.xyz/")
     ? "url"
     : "hash";
 
