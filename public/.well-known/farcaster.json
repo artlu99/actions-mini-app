@@ -12,6 +12,7 @@
         "imageUrl": "https://actions.artlu.xyz/favicon.png", 
         "buttonTitle": "Act 👉",
         "splashImageUrl": "https://actions.artlu.xyz/favicon.png",
-        "splashBackgroundColor": "#000000"
+        "splashBackgroundColor": "#000000",
+        "castShareUrl": "https://actions.artlu.xyz/"
     }
 }
